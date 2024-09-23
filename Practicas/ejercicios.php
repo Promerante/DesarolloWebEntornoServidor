@@ -43,6 +43,7 @@
         else{
             echo "el numero ";print_r($num_usuario);echo " no esta en la array";
         }
+
         echo "<h1>Ejercicio 3 </h1>"."<br>";
         $array2=[1,2,3,4,5,6,7,8,9,10];
         for($k=0;$k<sizeof($array2);$k++){
@@ -51,10 +52,69 @@
                 echo " ";
             }
         }
-        echo "<h1>Ejercicio 4 </h1>"."<br>";
-        
-           
 
+        echo "<h1>Ejercicio 4 </h1>"."<br>";
+        $arrayDesordenado=[88,2,6,34];
+        echo "Array desordenada:"."<br>";
+        print_r($arrayDesordenado);
+        asort($arrayDesordenado);
+        echo "<br>"."Array ordenada:"."<br>";  
+        print_r($arrayDesordenado);
+
+        echo "<h1>Ejercicio 5</h1>"."<br>";
+        $array5=[1,2,3,4,5];
+        print_r($array5);
+        echo "<br>"."La array de este ejercicio tiene ".count($array5)." elementos.";
+
+        echo "<h1>Ejercicio 6</h1>"."<br>";
+        $arrayNombre=["Facundo","Benitez","23"];
+        echo "El alumno de la array es ".$arrayNombre[0]." ".$arrayNombre[1]." tiene la siguiente edad:".$arrayNombre[2]; 
+
+        echo "<h1>Ejercicio 7</h1>"."<br>";
+        $arrayDesordenado=[88,2,6,34];//La he inicializado de nuevo copiando y pegando solo para que este desordenado nuevamente.
+        echo "Array desordenada:"."<br>";
+        print_r($arrayDesordenado);
+        echo "<br>";
+        $maximo=0;
+        $minimo=99;//Supongamos como en este ejemplo que sabemos que no hay numero mas grande que 99 para facilitar el codigo
+        for($i=0;$i<sizeof($arrayDesordenado);$i++){
+            if($maximo<$arrayDesordenado[$i]){
+                $maximo=$arrayDesordenado[$i];
+            }
+            if($minimo>$arrayDesordenado[$i]){
+                $minimo=$arrayDesordenado[$i];
+            }
+        }
+        echo "El elemento con mayor valor es: ".$maximo." mientras que el minimo es ".$minimo."<br>";
+        
+        echo "<h1>Ejercicio 8</h1>"."<br>";
+        $arrayVacia=[];
+        for($j=1;$j<=10;$j++){
+            array_push($arrayVacia,$j);
+        }
+        print_r($arrayVacia);
+        echo "<br>";
+        arsort($arrayVacia);
+        $arrayInvertida=$arrayVacia;
+        print_r($arrayInvertida);
+        echo "<br>";
+
+        echo "<h1>Ejercicio 9</h1>"."<br>";
+        $arrayJuegos=["RD2","Overwatch","Slay the spire","LOL","Isaac","Persona 3","RE2 Remake","For honor","Dead Cells","MTG Arena"];
+            echo "Los juegos en la array son: "."<br>";
+        for($k=0;$k<sizeof($arrayJuegos);$k++){
+            echo $arrayJuegos[$k]."<br>";
+        }
+
+        echo "<h1>Ejercicio 10</h1>"."<br>";
+        $impares=[1,3,5,7,9];
+        $pares=[2,4,6,8,10];
+        $arrayCompleto=array_merge($impares,$pares);
+        print_r($arrayCompleto);
+        echo "<br>";
+        asort($arrayCompleto);
+        print_r($arrayCompleto);
+        
 
         ?>
     </body>
