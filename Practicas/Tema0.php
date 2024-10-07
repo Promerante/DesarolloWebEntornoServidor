@@ -72,6 +72,29 @@
             print_r($arrayCompleto);
             echo "<br>";
 
+        
         ?>
+
+        <?PHP
+            echo "<h1>Switch y MATCH </h1><br>";
+            //SWITCH Y MATCH
+            $VAR=rand(1,4);
+            switch ($VAR){
+                case 1:
+                    echo "uno<br>";
+                    break;
+                default:
+                    echo "otro numero<br>";
+            }
+            $dia=4;
+            $nombreDia=match($dia){
+                1=> "Lunes<br>",
+                2=>"Martes<br>",
+                default=> "Otro dia de la semana<br>"
+            };
+            echo $nombreDia;
+
+        ?>
+        
     </body>
 </html>

@@ -115,7 +115,19 @@
         asort($arrayCompleto);
         print_r($arrayCompleto);
         
-
+        echo "<h1>Ejercicio +</h1>"."<br>";
+        $impares=[];
+        $pares=[];
+        
+        for($h=1;$h<=10;$h++){
+            $impares[$h-1]=2*$h-1;
+            $pares[$h-1]=2*$h;
+        }
+       
+        $arrayCompleto=array_merge($impares,$pares);
+        asort($arrayCompleto);
+        print_r($arrayCompleto);
+        echo "<br>";
         ?>
     </body>
 </html>
