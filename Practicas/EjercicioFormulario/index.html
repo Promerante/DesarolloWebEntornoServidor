@@ -1,29 +1,44 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Formulario9/10</title>
-</head>
-<body>
-    <h3>1. Ejercicio básico con GET: Crea un formulario que pida el nombre y la edad y los envíe
-        usando GET. Luego muestra los datos en la misma página.
+  </head>
+  <body>
+    <h3>
+      1. Ejercicio básico con GET: Crea un formulario que pida el nombre y la
+      edad y los envíe usando GET. Luego muestra los datos en la misma página.
     </h3>
-    <form action="ejercicio1.php" method="get">
-        Nombre: <input type="text" name="nombre">
-        Edad: <input type="number" name="edad">
-        <input type="submit" value="Enviar">
+    <form action="ejercicio0.php" method="get">
+      Nombre: <input type="text" name="nombre" /> 
+      Edad: <input type="number" name="edad" />
+      <input type="submit" value="Enviar" />
     </form>
-    <?php
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
- // Recogemos los datos del formulario usando $get
- $nombre = $_GET['nombre'];
- $edad = $_GET['edad'];
- // Mostrar los datos
- echo "Nombre: " . htmlspecialchars($nombre) . "<br>";
- echo "Edad: " . htmlspecialchars($edad) . "<br>";
-}
-?>
-    
-</body>
+    <h3>
+      2. Ejercicio con POST y validación: Crea un formulario que pida nombre,
+      edad y correo. Valida que los campos no estén vacíos y que la edad sea un
+      número mayor que 0.
+    </h3>
+    <form action="ejercicio0.php" method="post">
+        <input type="hidden" name="form" value="2">
+        Nombre:<input type="text" name="nombre" /> 
+        Edad:<input type="number" name="edad" />
+        Correo:<input type="email" name="correo"/>
+        <input type="submit" value="Enviar" />
+    </form>
+     <h3>
+        3. Formulario de comentarios: Crea un formulario con un área de texto donde los usuarios
+        puedan escribir un comentario. Valida que el comentario tenga al menos 10 caracteres
+        antes de procesarlo
+    </h3>
+    <form action="ejercicio0.php" method="post">
+        <input type="hidden" name="form" value="3">
+        Usuario:<input type="text" name="usuario"/>
+        Comentario:<textarea  name="comentario" rows="5" cols="100"></textarea>
+        <input type="submit" value="Enviar"/>
+    </form>
+
+
+  </body>
 </html>
