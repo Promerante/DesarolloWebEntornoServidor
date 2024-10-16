@@ -46,8 +46,6 @@
             }
         }
     }
-
-
     ?>
     <form action="index.php" method="post">
         <input type="hidden" name="form" value="7">
@@ -122,9 +120,28 @@
                 }
                 $marcador++;
             }
-            echo "La palabra " . $palabra . " tiene " . $vocales . " vocales.";
+            echo "La palabra " . $palabra . " tiene " . $vocales . " vocales.<br>";
+        }
+        if ($value == 1) {
+            $palabra2 = strtolower($_POST['palabra']);
+            $marcador = 0;
+            $marcador2 = 0;
+            $vocalesCont = 0;
+            $vocales = "aeiou";
+            while ($marcador < strlen($palabra2)) {
+                while ($marcador2 < strlen($vocales)) {
+                    if ($palabra2[$marcador] == $vocales[$marcador2]) {
+                        $vocalesCont++;
+                    }
+                    $marcador2++;
+                }
+                $marcador++;
+                $marcador2=0;
+            }
+            echo "La palabra " . $palabra2 . " tiene " . $vocalesCont . " vocales. Por el metodo 2";
         }
     }
+
     ?>
     <h2>
         Ejercicio 5:Pide al usuario que introduzca un número entero positivo.
@@ -301,6 +318,7 @@
                 while ($cont < count($arrayPalabra) / 2) {
                     if ($arrayPalabra[$cont] != $arrayPalabra[(count($arrayPalabra) - 1 - $cont)]) {
                         $palindromo = false;
+                        break;
                     }
                     $cont++;
                 }
