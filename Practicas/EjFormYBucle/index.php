@@ -9,14 +9,54 @@
 
 <body>
     <!--------------------------------------EJERCICIOS FORMULARIOS + BUCLES WHILE ------------------------------------------ -->
-    <h2>Ejercicio 1</h2>
-    Pide al usuario que introduzca números enteros uno a uno y suma todos los números introducidos.
-    El proceso termina cuando el usuario introduce un 0. Muestra la suma total al finalizar.<br>
-    CONSEJITOS: 1) Es mas sencillo si hacéis la etiqueta php en el mismo documento del formulario. 2) Dejad este ejercicio para el final<br>
-    
-    IMPORTANTE: Debeis de controlar el caso de introducir un 0 en primera instancia<br>
+    <h2>
+        Ejercicio 1
+        Pide al usuario que introduzca números enteros uno a uno y suma todos los números introducidos.
+        El proceso termina cuando el usuario introduce un 0. Muestra la suma total al finalizar.<br>
+        CONSEJITOS:
+        1) Es mas sencillo si hacéis la etiqueta php en el mismo documento del formulario. <br>
+        2) Dejad este ejercicio para el final<br>
+        IMPORTANTE: Debeis de controlar el caso de introducir un 0 en primera instancia<br>
+    </h2>
+    <?php
+    $suma = 0;
+    $numGuardado = "";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $elec = $_POST["form"];
+        if ($elec == "7") {
+            $arraySum = [];
+            $numGuardado = $_POST["guard"];
+            $numero = $_POST["numero"];
+            echo ($numero);
+            if ($numero != 0) {
+                $numGuardado .= "$numero,";
+            } else {
+                if ((int)$numero !== 0) {
+                    echo "No has introducido un numero";
+                } else {
+                    $arraySum = explode(",", $numGuardado);
+                    foreach ($arraySum as $num) {
+                        $suma += (int)($num);
+                    }
+                    echo "El resultado de la suma de $numGuardado es:<br>
+                            $suma";
+                    $suma = 0;
+                    $numGuardado = "";
+                }
+            }
+        }
+    }
 
-    <h2>
+
+    ?>
+    <form action="index.php" method="post">
+        <input type="hidden" name="form" value="7">
+        <input type="hidden" name="guard" value="<?php echo $numGuardado; ?>">
+        Numero<input type="number" name="numero" id="" required>
+        <input type="submit" value="Enviar">
+
+    </form>
+    <h2>
         Ejercicio 2:Crea un array de 10 números aleatorios entre 1 y 100. Usando un bucle while,
         recorre el array para encontrar y mostrar el número máximo y el número mínimo.<br>
     </h2>
@@ -131,7 +171,6 @@
     }
     print_r($array6);
     ?>
-
     <h2>
         Ejercicio 7:Pide al usuario que introduzca un número N (menor o igual a 20).
         Usando un bucle while, genera y muestra los primeros N números de la serie de Fibonacci.
@@ -179,33 +218,101 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $value = $_POST['form'];
             if ($value == 4) {
-                $num1=$_POST['numero1'];
-                $num2=$_POST['numero2'];
-                if($num1<$num2){
-                    echo "Introduce los numeros en el orden correcto";
-                }
-                else{
-                    $j=$num1;
-                    while($j<=$num2){
-                        IF($j%5==0){
-                            echo $j." ";
-                        }
-                        $j++;
+                $num1 = $_POST['numero1'];
+                $num2 = $_POST['numero2'];
+                if ($num1 > $num2) {
+                    $temp = $num2;
+                    $num2 = $num1;
+                    $num1 = $temp;
+                } //OJO: entonces num2 siempre sera el mayor y num1 el menor
+                while ($num1 <= $num2) {
+                    if ($num1 % 5 == 0) {
+                        echo $num1 . " ";
                     }
+                    $num1++;
                 }
             }
         }
         ?>
     </form>
-
-    <h2>Ejercicio 9</h2>
-    Pide al usuario que introduzca dos números enteros que representen un rango.
-    Usando un bucle while y la función esPrimo(), suma y muestra todos los números primos que se encuentren en ese rango.
-    
-     <h2>Ejercicio 10</h2>
-    Pide al usuario que introduzca una palabra. Usando un bucle while, verifica si la palabra es un palíndromo (se lee igual al derecho que al revés).
-    Muestra un mensaje indicando si es o no un palíndromo.
-
+    <h2>
+        Ejercicio 9: Pide al usuario que introduzca dos números enteros que representen un rango.
+        Usando un bucle while y la función esPrimo(), suma y muestra todos los números primos que se encuentren en ese rango.
+    </h2>
+    <form action="index.php" method="post">
+        <input type="hidden" name="form" value="5">
+        Numero1:<input name="numero1" type="number"></input>
+        Numero2:<input name="numero2" type="number"></input>
+        <input type="submit" value="Enviar" />
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $value = $_POST['form'];
+            if ($value == 5) {
+                $num1 = $_POST['numero1'];
+                $num2 = $_POST['numero2'];
+                $arrayPrimo = array();
+                $arraySumPrimo = array();
+                if ($num1 > $num2) {
+                    $temp = $num2;
+                    $num2 = $num1;
+                    $num1 = $temp;
+                } //OJO: entonces num2 siempre sera el mayor y num1 el menor
+                while ($num1 <= $num2) {
+                    $esPrimo = true;
+                    for ($a = 2; $a < $num1; $a++) {
+                        if ($num1 % $a == 0) {
+                            $esPrimo = false;
+                        }
+                    }
+                    if ($esPrimo) {
+                        array_push($arrayPrimo, $num1);
+                        $sumatoria = 0;
+                        for ($b = 0; $b < count($arrayPrimo); $b++) {
+                            $sumatoria += $arrayPrimo[$b];
+                        }
+                        array_push($arraySumPrimo, $sumatoria);
+                    }
+                    $num1++;
+                }
+                echo "<br>";
+                print_r($arrayPrimo);
+                echo "<br>";
+                print_r($arraySumPrimo);
+            }
+        }
+        ?>
+    </form>
+    <h2>
+        Ejercicio 10:Pide al usuario que introduzca una palabra. Usando un bucle while, verifica si la palabra es un palíndromo (se lee igual al derecho que al revés).
+        Muestra un mensaje indicando si es o no un palíndromo.
+    </h2>
+    <form action="index.php" method="post">
+        <input type="hidden" name="form" value="6">
+        Palabra:<input name="palabra" type="text"></input>
+        <input type="submit" value="Enviar" />
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $value = $_POST['form'];
+            if ($value == 6) {
+                $palabra = $_POST['palabra'];
+                $palindromo = true;
+                $arrayPalabra = str_split($palabra);
+                $cont = 0;
+                while ($cont < count($arrayPalabra) / 2) {
+                    if ($arrayPalabra[$cont] != $arrayPalabra[(count($arrayPalabra) - 1 - $cont)]) {
+                        $palindromo = false;
+                    }
+                    $cont++;
+                }
+                if ($palindromo) {
+                    echo "<br>La palabra " . $palabra . " es un palindromo<br>";
+                } else {
+                    echo "<br>La palabra " . $palabra . " no es un palindromo<br>";
+                }
+            }
+        }
+        ?>
+    </form>
 </body>
 
 </html>
