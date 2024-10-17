@@ -221,7 +221,7 @@
     ?>
     <h2>
         Ejercicio 8:Pide al usuario que introduzca dos números enteros que representen un rango.
-        Usando un bucle while, muestra todos los números dentro de ese rango que sean divisibles entre 5.
+        Usando un bucle while, muestra todos los números dentro de ese rango que sean divisibles entre 2,3,5 y de todos a la vez.
     </h2>
     <form action="index.php" method="post">
         <input type="hidden" name="form" value="4">
@@ -230,6 +230,25 @@
         <input type="submit" value="Enviar" />
         <?php
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            function div2($num){
+                if ($num % 2 == 0) {
+                    return true;
+                }
+                return false;
+            }
+            function div3($num){
+                if ($num % 3 == 0) {
+                    return true;
+                }
+                return false;
+            }
+            function div5($num){
+                if ($num % 5 == 0) {
+                    return true;
+                }
+                return false;
+            }
+
             $value = $_POST['form'];
             if ($value == 4) {
                 $num1 = $_POST['numero1'];
@@ -239,12 +258,39 @@
                     $num2 = $num1;
                     $num1 = $temp;
                 } //OJO: entonces num2 siempre sera el mayor y num1 el menor
-                while ($num1 <= $num2) {
-                    if ($num1 % 5 == 0) {
-                        echo $num1 . " ";
+                $j=$num1;
+                $array2=[];
+                $array3=[];
+                $array5=[];
+                $array235=[];
+                while ($j <= $num2) {
+                    if(div2($j)){
+                        array_push($array2,$j);
                     }
-                    $num1++;
+                    if(div3($j)){
+                        array_push($array3,$j);
+                    }
+                    if(div5($j)){
+                        array_push($array5,$j);
+                    }
+                    if(div2($j)&&div3($j)&&div5($j)){
+                        array_push($array235,$j);
+                    }
+                    $j++;
                 }
+                echo "<br>Dado el número $num1 y el $num2:<br>";
+                echo "Divisible entre 2: ";
+                print_r($array2);
+                echo"<br>";
+                echo "Divisible entre 3: ";
+                print_r($array3);
+                echo "<br>";
+                echo "Divisible entre 5: ";
+                print_r($array5);
+                echo"<br>";
+                echo "Divisible entre 2,3 y 5: ";
+                print_r($array235);
+                echo"<br>";
             }
         }
         ?>
