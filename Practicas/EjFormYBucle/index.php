@@ -31,18 +31,15 @@
             if ($numero != 0) {
                 $numGuardado .= "$numero,";
             } else {
-                if ((int)$numero !== 0) {
-                    echo "No has introducido un numero";
-                } else {
-                    $arraySum = explode(",", $numGuardado);
-                    foreach ($arraySum as $num) {
-                        $suma += (int)($num);
-                    }
-                    echo "El resultado de la suma de $numGuardado es:<br>
-                            $suma";
-                    $suma = 0;
-                    $numGuardado = "";
+
+                $arraySum = explode(",", $numGuardado);
+                foreach ($arraySum as $num) {
+                    $suma += (int)($num);
                 }
+                echo "El resultado de la suma de $numGuardado es:<br>
+                            $suma";
+                $suma = 0;
+                $numGuardado = "";
             }
         }
     }
@@ -136,7 +133,7 @@
                     $marcador2++;
                 }
                 $marcador++;
-                $marcador2=0;
+                $marcador2 = 0;
             }
             echo "La palabra " . $palabra2 . " tiene " . $vocalesCont . " vocales. Por el metodo 2";
         }
