@@ -219,6 +219,34 @@
 
         // Mostrar el promedio
         echo "<br>Promedio de todos los elementos: " . $promedio;
+        $cursos=[
+            "Curso1" => ["Clase1" => 15,"Clase2" =>20,"Clase3" =>16],
+            "Curso2" => ["Clase1" => 19,"Clase2" =>21,"Clase3" =>6],
+            "Curso3" => ["Clase1" => 14,"Clase2" =>29,"Clase3" =>19]
+        ];
+            echo "<pre>";
+            print_r($cursos);
+            echo "</pre>";
+            $mayorMedia=0;
+            $cursoConMayorMedia="";
+            foreach($cursos as $curso => $clases){
+                $totalAlumno=0;
+                $numClases=0;
+                foreach($clases as $clase => $alumno){
+                    $totalAlumno+=$alumno;
+                    $numClases++;
+                }
+                $media=$totalAlumno/$numClases;
+                echo "La media del curso ".$curso."es: ".$media;
+                if($mayorMedia<$media){
+                    $mayorMedia=$media;
+                    $cursoConMayorMedia=$curso;
+                }
+            }
+            echo "<br>El curso con mayor media es $cursoConMayorMedia y su media es $mayorMedia<br>";
+            for($i=0;$i<count($cursos);$i++){
+                print_r($cursos[$i]);
+            }
     ?>
 </body>
 </html>
