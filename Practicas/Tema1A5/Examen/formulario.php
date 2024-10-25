@@ -25,6 +25,20 @@
         <input name="operacion" type="text"></input>
         <input type="submit" value="Realizar Operacion" />
     </form>
+    </form>
+    <h1>PASCAL</h1>
+    <form action="ejercicios+.php" method="post">
+        <input type="hidden" name="form" value="1">
+        <input name="filas" type="number" min="0"></input>
+        <input type="submit" value="Hacer triangulo" />
+    </form>
+    <h1>Primos</h1>
+    <form action="ejercicios+.php" method="post">
+        <input type="hidden" name="form" value="2">
+        <input name="filas" type="number" min="0"></input>
+        <input type="submit" value="Hacer triangulo" />
+    </form>
+
 
 </body>
 
