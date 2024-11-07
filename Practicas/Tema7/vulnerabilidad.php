@@ -22,14 +22,10 @@
 <?php
     error_reporting(E_ALL);
     ini_set("display_errors",1);
-if($_SERVER["REQUEST_METHOD"]=="POST"){
-    $comentario=$_POST["comentario"];
-    echo $comentario;
-}
 if($_SERVER["REQUEST_METHOD"]=="GET"){
-    $comentario=htmlspecialchars($_GET["comentario"]);
+    if(!isset($edad)){
+        echo "La variable \$edad no existe";
+    }
     
 }
-isset($pepe);
-empty($pepe);
 ?>
