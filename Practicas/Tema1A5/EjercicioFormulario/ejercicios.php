@@ -36,7 +36,7 @@
         echo " es el sumatorio de los valores de la array"."<br>";
         
         echo "<h1>Ejercicio 2 </h1>"."<br>";
-        $num_usuario=1;
+        $num_usuario=7;
         if(in_array($num_usuario,$array1)){
             echo "el numero ";print_r($num_usuario);echo " esta en la array";
         }
@@ -57,8 +57,12 @@
         $arrayDesordenado=[88,2,6,34];
         echo "Array desordenada:"."<br>";
         print_r($arrayDesordenado);
-        asort($arrayDesordenado);
+        asort($arrayDesordenado);//Esta funcion ordena la array introducida de menor a mayor los valores de la array
+        //OJO sus claves siguen siendo la misma
         echo "<br>"."Array ordenada:"."<br>";  
+        print_r($arrayDesordenado);
+        echo "<br>"."Array ordenada por claves:"."<br>";  
+        ksort($arrayDesordenado);//ksort los ordena segun las claves de la array 
         print_r($arrayDesordenado);
 
         echo "<h1>Ejercicio 5</h1>"."<br>";

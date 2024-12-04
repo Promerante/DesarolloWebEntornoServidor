@@ -357,6 +357,7 @@
                 $palabra = $_POST['palabra'];
                 $palindromo = true;
                 $arrayPalabra = str_split($palabra);
+                print_r($arrayPalabra);
                 $cont = 0;
                 while ($cont < count($arrayPalabra) / 2) {
                     if ($arrayPalabra[$cont] != $arrayPalabra[(count($arrayPalabra) - 1 - $cont)]) {

@@ -19,7 +19,7 @@
         $: termina con
         {}: numero de caracteres del mismo
         []: define un conjunto de caracteres aceptables
-        (?=...): es una expresion de busqueda anticipada positiva que verifica que la condicion dentro de los parentesis
+        (?=.): es una expresion de busqueda anticipada positiva que verifica que la condicion dentro de los parentesis
         este presente en algun lugar de la cadena 
     */
     $cadena = "abc123";
