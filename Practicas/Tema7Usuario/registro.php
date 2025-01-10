@@ -15,11 +15,40 @@
 
 <body>
     <?php
+    
+    session_start();
+    if(isset( $_SESSION["usuario"]))echo "Hey YA ESTAS CON UN USUARIO";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $usuario = $_POST["usuario"];
         $contraseña = $_POST["contraseña"];
-        $consulta = "INSERT INTO usuarios(usuario,contraseña) VALUES ('$usuario' , '$contraseña');";
-        $_conexion->query($consulta);
+        $contraseñaCifrada=password_hash($contraseña,PASSWORD_DEFAULT);
+        if(!empty($usuario)&&!empty($contraseña)&&strlen($usuario)<=50&&strlen($usuario)<=255&& !duplicado($usuario,$_conexion)){//NO COMPRUEBA SI METE UN USUARIO DE MISMO NOMBRE
+            $consulta = "INSERT INTO usuarios(usuario,contraseña) VALUES ('$usuario' , '$contraseñaCifrada');";
+            $_conexion->query($consulta);
+        }
+        else if(empty($usuario)||empty($contraseña)) echo "Usuario o Contraseña vacias";
+        else if(strlen($usuario)>50||strlen($usuario)>255) echo "Usuario o Contraseña demasiado largas";
+        else if(duplicado($usuario,$_conexion))echo "Usuario ya existente";
+        else echo "ERROR DESCONOCIDO";
+
+        
+    }
+    
+    
+    function duplicado($usuario,$_conexionA){
+        $consulta="SELECT * FROM usuarios ";
+        $usuarios=[];
+        
+        $res=$_conexionA->query($consulta);
+        
+        while($fila=$res->fetch_assoc()){
+            array_push($usuarios,$fila["usuario"]);
+        }
+        $boolean=false;
+        foreach( $usuarios as $usuarioArray){
+            if($usuarioArray==$usuario) $boolean=true;
+        }
+        return $boolean;
     }
     ?>
 
