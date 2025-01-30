@@ -1,6 +1,8 @@
 <?php
 error_reporting(E_ALL);
 ini_set("display errors", 1);
+error_reporting(E_ALL);
+ini_set("display errors", 1);
 header("Content-type: application/json");
 require "conexion_pdo.php";
 $metodo = $_SERVER["REQUEST_METHOD"];
@@ -16,46 +18,61 @@ switch ($metodo) {
         // controlPost($_conexion);
         break;
     case "PUT":
-        // controlPut($_conexion);
+        controlPut($_conexion,$entrada);
         break;
     case "Delete":
-        // controlDelete($_conexion);
+        controlDelete($_conexion,$entrada);
         break;
         default:
         echo json_encode(["metodo"=>"otro"]);
         break;
 }
+
 //Empecemos con las funciones!
 function controlGet($_conexion){
-    if(isset($_GET["ciudad"])&&$_GET["ciudad"]!=""){
-        $consulta="SELECT * FROM desarrolladoras WHERE ciudad= :c";
+    if(isset($_GET["nombre_desarrolladora"])&&!empty($_GET["nombre_desarrolladora"])){
+        $consulta="SELECT * FROM desarrolladoras WHERE nombre_desarrolladora= :c";
         $stmt=$_conexion->prepare($consulta);
-        $stmt->execute(["c"=>$_GET["ciudad"]]);
+        $stmt->execute(["c"=>$_GET["nombre_desarrolladora"]]);
     }else{
         $consulta="SELECT * FROM desarrolladoras";
         $stmt=$_conexion->prepare($consulta);
         $stmt->execute();
     }
-    $res=$stmt->fetcAll(PDO::FETCH_ASSOC);
+    $res=$stmt->fetchAll(PDO::FETCH_ASSOC);
 
     echo json_encode($res);
 }
-function($_conexion,$entrada){
-   $consulta="INSERT INTO desarrolladoras(id,nombre_desarrolladora,ciudad,anno_fundacion) VALUES (:i,:n,:c,:a)";
-   $stmt=$_conexion->prepare($consulta);
-   $stmt->execute([
-    "i"=>$entrada["id"],
-    "n"=>$entrada["nombre_desarrolladora"],
-    "c"=>$entrada["ciudad"],
-    "a"=>$entrada["anno_fundacion"],
-    
-   ]);
-   if($stmt){
-    echo json_encode(["mensaje"=>"Se ha insertado correctamente la fila"]);
-   }else{
-    echo json_encode(["mensaje"=>"La has liado loquete"]);
-   }
+function controlPut($_conexion,$entrada){
+    $consulta="UPDATE desarrolladoras SET ciudad=:c, anno_fundacion=:a WHERE nombre_desarrolladora=:n";
+    $stmt=$_conexion->prepare($consulta);
+    $stmt->execute([
+        "c"=>$entrada["ciudad"],
+        "a"=>$entrada["anno_fundacion"],
+        "n"=>$entrada["nombre_desarrolladora"]
+    ]);
+    if($stmt){
+        echo json_encode(["mensaje"=>"La desarrolladora se ha modificado correctamente"]);
 
-    
+    }else{
+        echo json_encode(["mensaje"=>"No se ha ejecutado correctamente el cambio"]);    
+    }
 }
+
+function controlDelete($_conexion,$entrada){
+    $consulta="DELETE FROM desarrolladoras WHERE nombre_desarrolladora=:n";
+    $stmt=$_conexion->prepare($consulta);
+    $stmt->execute([
+        "n"=>$entrada["nombre_desarrolladora"]
+    ]);
+    if($stmt){
+        echo json_encode(["mensaje"=>"La desarrolladora se ha borrado correctamente"]);
+
+    }else{
+        echo json_encode(["mensaje"=>"No se ha ejecutado correctamente el delete"]);    
+    }
+}   
+
+
+
 ?>
