@@ -7,6 +7,9 @@
  DELETE: en el caso de que se especifique un vd, se eliminara la fila de dicho juego, en caso 
  de que no se especifique nada, no se eliminara nada. Pero en el caso de que se introduzca la
  palabra ADMIN, se eliminara los datos de la tabla entera
+ PUT: es obligatorio la primary para acceder al juego, a partir de ahí actualizaremos los campos que se rellenen
+ los campos no rellenados se quedaran con el valor que ya tenia en la bbdd
+ los campos VARCHAR actualizados tendran un asterisco al final de la cadena
   -->
 <?php
 //Config pa la conexion con la bd
