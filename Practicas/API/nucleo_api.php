@@ -1,6 +1,5 @@
 <?php
-error_reporting(E_ALL);
-ini_set("display errors", 1);
+
 error_reporting(E_ALL);
 ini_set("display errors", 1);
 header("Content-type: application/json");
