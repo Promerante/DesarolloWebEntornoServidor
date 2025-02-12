@@ -1,0 +1,9 @@
+Mostrar una lista con 10 pokemitos:
+1)    Crear un fichero que realice lo siguiente:
+    Consulta la Api y muestre la lista con 10 primeros pokemitos
+    Cada nombre debe aparecer con la primera letra en mayusc(con ucfirst())
+    Muestra un enlace que redirija a otra pagina (otro ficherito) para obtener mas detalles sobre los pokemitos
+
+2)  En el fichero detalle_pokemon.php, mostrar la información básica del pokémon (altura, peso y tipo),
+    mostrar la imagen de frente del pokemito y listar sus tipos dentro de una lista
+     (es decir, en cada línea de la lista, un tipo diferente, si tiene un solo tipo sólo aparecerá una línea)
